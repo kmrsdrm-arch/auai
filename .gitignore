@@ -1,0 +1,13 @@
+# Node artifacts
+web/.next/
+web/node_modules/
+
+# Python virtualenv
+services/data_simulator/.venv/
+
+# OS clutter
+*.log
+Thumbs.db
+.DS_Store
+
+
