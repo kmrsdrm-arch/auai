@@ -69,22 +69,6 @@ export default async function DashboardSummaryPage() {
         <p className="text-white/70 leading-relaxed">
           {snapshot.aiRecommendation}
         </p>
-        <div className="mt-6 flex gap-4">
-          <div className="flex-1 rounded-xl bg-black/40 p-4 border border-white/10">
-            <div className="text-2xl font-bold text-cyan-400">
-              {Math.round((snapshot.kpis[0]?.confidence ?? 0.95) * 100)}%
-            </div>
-            <div className="text-xs text-white/60 mt-1">Model Confidence</div>
-          </div>
-          <div className="flex-1 rounded-xl bg-black/40 p-4 border border-white/10">
-            <div className="text-2xl font-bold text-emerald-400">&lt;1ms</div>
-            <div className="text-xs text-white/60 mt-1">Query Response</div>
-          </div>
-          <div className="flex-1 rounded-xl bg-black/40 p-4 border border-white/10">
-            <div className="text-2xl font-bold text-violet-400">24/7</div>
-            <div className="text-xs text-white/60 mt-1">Live Monitoring</div>
-          </div>
-        </div>
       </div>
     </section>
   );

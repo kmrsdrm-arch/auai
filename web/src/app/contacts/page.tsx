@@ -8,6 +8,7 @@ export default function ContactsPage() {
           <header>
             <p className="text-xs uppercase tracking-[0.4em] text-cyan-200">Contacts</p>
             <h1 className="mt-2 text-4xl font-bold">Get In Touch</h1>
+            <p className="mt-3 text-2xl font-semibold text-cyan-400">Kumar Sundaram</p>
             <p className="mt-4 text-lg text-white/70">
               For inquiries about this Business Intelligence platform or to discuss collaboration opportunities,
               please reach out through any of the channels below.

@@ -1,3 +1,5 @@
+import ArchitectureDiagram from "@/components/ArchitectureDiagram";
+
 export const dynamic = "force-dynamic";
 
 export default function AboutPage() {
@@ -12,7 +14,7 @@ export default function AboutPage() {
             </h1>
           </header>
           
-          <div className="mt-8 space-y-6">
+          <div className="mt-8 space-y-8">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
               <h2 className="text-2xl font-semibold text-white mb-4">Vision</h2>
               <p className="text-white/80 leading-relaxed">
@@ -20,6 +22,12 @@ export default function AboutPage() {
                 This platform enables confident, informed decision-making through dynamic visualizations, natural language queries, 
                 and real-time KPI monitoring—all delivered in a stunning, next-generation dark-themed interface.
               </p>
+            </div>
+
+            {/* Architecture Diagrams */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-8">
+              <h2 className="text-2xl font-semibold text-white mb-6">Architecture Overview</h2>
+              <ArchitectureDiagram />
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -65,21 +73,6 @@ export default function AboutPage() {
                     <span>Cost-effective architecture using free-tier services</span>
                   </li>
                 </ul>
-              </div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-500/10 to-transparent p-6">
-                <div className="text-3xl font-bold text-cyan-400">&lt;1 MB</div>
-                <p className="mt-2 text-sm text-white/70">Lightweight Data</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 to-transparent p-6">
-                <div className="text-3xl font-bold text-emerald-400">95%+</div>
-                <p className="mt-2 text-sm text-white/70">AI Confidence</p>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/10 to-transparent p-6">
-                <div className="text-3xl font-bold text-violet-400">100%</div>
-                <p className="mt-2 text-sm text-white/70">Secured</p>
               </div>
             </div>
 
