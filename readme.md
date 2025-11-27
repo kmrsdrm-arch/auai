@@ -72,12 +72,40 @@ npm run dev
 - Analytics proxies route through `/api/metrics` so the FastAPI origin never reaches the browser.
 - Dashboard is dark-mode–only with executive-ready typography and gradients.
 
+## Navigation Structure
+
+The dashboard features a **hierarchical multi-page navigation** system:
+
+### Main Pages
+- **Home** (`/`) – Landing page with Hero section and quick navigation cards
+- **About** (`/about`) – Architecture, tech stack, vision, and key features
+- **Analytics** – Multi-page analytics section with sub-navigation
+  - **Dashboard Summary** (`/analytics/dashboard-summary`) – KPI cards and executive overview
+  - **Sales Analytics** (`/analytics/sales`) – Revenue runway, charts, and sales data table
+  - **Inventory Analysis** (`/analytics/inventory`) – Coverage confidence, risk analysis
+  - **Report** (`/analytics/report`) – AI-powered insights with natural language query interface
+- **Contacts** (`/contacts`) – Email, WhatsApp, and project information
+
+### Key Features
+- **Smart Navigation**: Top-level nav automatically shows Analytics sub-menu when browsing analytics pages
+- **Route Awareness**: Active page highlighting for intuitive navigation
+- **Responsive Design**: Optimized for desktop and mobile with sticky navigation
+- **Deep Dark Theme**: Executive-grade UI with beautiful gradients and animations
+
 ## Folder Highlights
 
-- `web/src/app/page.tsx` – Hero, About, Analytics, and Contacts sections with NL query console.
-- `web/src/components/AnalyticsBoard.tsx` – Filters, KPI cards, charts, and AI report.
-- `web/src/lib/server/loadSnapshot.ts` – Shared loader that syncs FastAPI data → Instant cache.
-- `services/data_simulator/factory.py` – Deterministic synthetic data factory.
+- `web/src/app/` – Next.js App Router pages organized by route
+  - `page.tsx` – Landing page with hero and quick links
+  - `about/page.tsx` – Complete about section
+  - `analytics/` – Analytics module with 4 dedicated pages
+  - `contacts/page.tsx` – Contact information and forms
+- `web/src/components/` – Reusable UI components
+  - `ExecutiveNav.tsx` – Hierarchical navigation with route awareness
+  - `Hero.tsx` – Dynamic hero section with KPI display
+  - `KpiCard.tsx` – Executive KPI visualization cards
+- `web/src/lib/server/loadSnapshot.ts` – Shared loader that syncs FastAPI data → Instant cache
+- `web/src/lib/instantMemory.ts` – Client-side data hook for analytics pages
+- `services/data_simulator/factory.py` – Deterministic synthetic data factory
 
 ## Deployment Notes
 

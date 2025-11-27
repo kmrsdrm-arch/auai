@@ -3,7 +3,6 @@
 import "server-only";
 
 import { generateFallbackSnapshot } from "../offlineData";
-import { stageInstantSnapshot } from "../instantMemory";
 import type { ExecutiveSnapshot, InventoryRecord, SalesRecord } from "../types";
 
 const DATA_API_URL = process.env.DATA_API_URL ?? "http://127.0.0.1:8000";
@@ -49,12 +48,10 @@ export async function loadExecutiveSnapshot(): Promise<ExecutiveSnapshot> {
 
     const payload = (await response.json()) as ServicePayload;
     const snapshot = normalizePayload(payload);
-    stageInstantSnapshot(snapshot);
     return snapshot;
   } catch (error) {
     console.warn("[data] Falling back to local synthetic snapshot:", error);
     const fallback = generateFallbackSnapshot();
-    stageInstantSnapshot(fallback);
     return fallback;
   }
 }

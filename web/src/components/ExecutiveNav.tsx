@@ -1,52 +1,74 @@
 "use client";
 
-const sections = [
-  { label: "About", target: "#about" },
-  { label: "Analytics", target: "#analytics" },
-  { label: "Contacts", target: "#contact" },
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+const mainSections = [
+  { label: "About", href: "/about" },
+  { label: "Analytics", href: "/analytics/dashboard-summary" },
+  { label: "Contacts", href: "/contacts" },
 ];
 
 const analyticsSubsections = [
-  { label: "Dashboard Summary", target: "#dashboard-summary" },
-  { label: "Sales Analytics", target: "#sales-analytics" },
-  { label: "Inventory Analysis", target: "#inventory-analysis" },
-  { label: "Report", target: "#report" },
+  { label: "Dashboard Summary", href: "/analytics/dashboard-summary" },
+  { label: "Sales Analytics", href: "/analytics/sales" },
+  { label: "Inventory Analysis", href: "/analytics/inventory" },
+  { label: "Report", href: "/analytics/report" },
 ];
 
 export default function ExecutiveNav() {
-  const scrollTo = (selector: string) => {
-    const el = document.querySelector(selector);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const pathname = usePathname();
+  const [showAnalyticsMenu, setShowAnalyticsMenu] = useState(false);
+  
+  const isAnalyticsSection = pathname?.startsWith("/analytics");
 
   return (
     <nav className="sticky top-4 z-30 flex flex-col gap-3 rounded-3xl border border-white/10 bg-black/40 p-4 backdrop-blur-2xl">
+      {/* Main Navigation */}
       <div className="flex flex-wrap gap-3 text-sm">
-        {sections.map((item) => (
-          <button
-            key={item.label}
-            type="button"
-            onClick={() => scrollTo(item.target)}
-            className="rounded-full border border-white/20 px-4 py-2 text-white transition hover:border-cyan-300 hover:text-cyan-200"
-          >
-            {item.label}
-          </button>
-        ))}
+        {mainSections.map((item) => {
+          const isActive = 
+            item.href === pathname || 
+            (item.href === "/analytics/dashboard-summary" && isAnalyticsSection);
+          
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`rounded-full border px-4 py-2 transition ${
+                isActive
+                  ? "border-cyan-400 bg-cyan-400/20 text-cyan-300"
+                  : "border-white/20 text-white hover:border-cyan-300 hover:text-cyan-200"
+              }`}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </div>
-      <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wide text-white/50">
-        {analyticsSubsections.map((item) => (
-          <button
-            key={item.label}
-            type="button"
-            onClick={() => scrollTo(item.target)}
-            className="rounded-full border border-white/10 px-3 py-1 text-white/70 transition hover:border-cyan-300 hover:text-cyan-200"
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
+
+      {/* Analytics Sub-Navigation - Show when on Analytics pages */}
+      {isAnalyticsSection && (
+        <div className="flex flex-wrap gap-3 border-t border-white/10 pt-3 text-xs uppercase tracking-wide">
+          {analyticsSubsections.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-full border px-3 py-1 transition ${
+                  isActive
+                    ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
+                    : "border-white/10 text-white/70 hover:border-cyan-300 hover:text-cyan-200"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </nav>
   );
 }
